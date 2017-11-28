@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" type="image/png" href="/imagenes/imagen/favicon.png" />
+<!--
+<link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed" rel="stylesheet">    <title>Sirvase Usted</title>
+-->
+
+<!-- Bootstrap core CSS -->
+<link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/static/fontawsome/css/font-awesome.min.css">
+
+
+<!-- Custom styles for this template -->
+<link href="/static/css/modern-business.css" rel="stylesheet">
+
+
+<link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed" rel="stylesheet">    <title>Sirvase Usted</title>
+<!--
+<link href="/static/files/bootstrap.min.css" rel="stylesheet">
+-->
+<link href="/static/files/jquery.bsPhotoGallery.css" rel="stylesheet">
+
+<script src="/static/files/jquery-1.10.2.min.js"></script>
+<script src="/static/files/bootstrap.min.js"></script>
+<script src="/static/files/jquery.bsPhotoGallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+<script>
+$(document).ready(function(){
+$('ul.first').bsPhotoGallery({
+"classes" : "col-sm-3 col-xs-4 col-xxs-12",
+"hasModal" : true,
+// "fullHeight" : false
+});
+});
+</script>
+<style> body { font-family: 'Barlow Semi Condensed', sans-serif; } </style>
+
+<style>
+@import url(https://fonts.googleapis.com/css?family=Bree+Serif);
+
+
+body {
+background:#ebebeb;
+}
+ul {
+padding:0 0 0 0;
+margin:0 0 40px 0;
+}
+ul li {
+list-style:none;
+margin-bottom:10px;
+}
+
+.text {
+/*font-family: 'Bree Serif';*/
+color:#666;
+font-size:11px;
+margin-bottom:10px;
+padding:12px;
+background:#fff;
+}
+
+
+
+</style>
+
+
+
+
+<style>
+audio: {
+background-color: #FF002C;
+}
+</style>
+
+<style> body { font-family: 'Barlow Semi Condensed', sans-serif; } </style>
+
+
+
+</style>
+
+
+
+
+
+
+</head>
+
+<body>
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+<a class="navbar-brand" href="/"><img class="img-fluid rounded" src="/imagenes/imagen/logo.png" width="64" alt=""></a>
+<a class="navbar-brand" href="tel:+660991364" ><i class="nav-link fa fa-phone fa-lg"> </i>660 99 13 64 </a>
+<a class="navbar-brand" href="tel:+660991364" ><i class="nav-link fa fa-whatsapp fa-lg"></i> 660 99 13 64</a>
+<a class="navbar-brand" href="mailto:sirvaseusted@gmail.com"><i class="nav-link fa fa-envelope fa-lg"> </i>sirvaseusted@gmail.com</a>
+<a class="navbar-brand" href="/galeria"><i class="nav-link fa fa-camera fa-lg"> </i> Galería <small>(nuevo<i class="nav-link fa fa-star fa-xs fa-spin"></i>)</small></a>
+</nav>
+
+
+
+<div class="container">
+
+<div class="row">
+	<div class="col-lg-12"  align="center">
+		<h1>10 fotos diarias! <br><small>10/24 = 0,416666667</small></h1>
+	</div>
+</div>
+
+<hr style="text-align:center; border-bottom:1px dashed #ccc;  padding:0 0 20px 0; margin-bottom:40px;">
+
+
+<div class="row">
+	<div class="col-lg-2">
+		<a href="/galeria" type="button" class="btn btn-primary btn-xs">Todo</a>
+		<br>
+		<br>
+		{%for c in category%}
+			<form role="form" action=""  method='POST' >{% csrf_token %}
+				<input type="hidden" name="c" value="{{c.id}}">
+				<button type="submit" class="btn {%if c.cate == catselect.cate %}btn-danger{%else%}btn-default{%endif%} btn-xs">{{c.cate}} ({{c.number}})</button>
+			</form>
+		<br>
+		{%endfor%}
+	</div>
+
+
+	<div class="col-lg-10">
+		<ul class="row first">
+			{%for g in gallery%}
+				<li>
+					<img alt="{{g.alt}}"  src="/imagenes/{{g.src}}">
+					<div class="text">
+					<span class="glyphicon glyphicon-tag"></span> 
+					{{g.text}}<br>
+					<small>
+					<span class="glyphicon glyphicon-comment"></span> 
+					{{g.small}}<br>
+					<span class="glyphicon glyphicon-time"></span>
+					{{g.reg|date:"d/m/Y H:i"}}
+					</small>
+					</div>
+				
+
+
+					<div class="row">
+						<div class="col-lg-3">
+							<a href="/galeria?i={{g.id}}&v=-1" type="button" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-thumbs-down"></span> <small><span class="badge">{{g.counterdown}}</span></small></a>
+						</div>       
+
+
+						<div class="col-lg-3">
+							<a href="/galeria?i={{g.id}}&v=1" type="button" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-thumbs-up"></span> <small><span class="badge">{{g.counterup}}</span></small></a>
+						</div>
+					</div>
+
+				</li>	
+
+			{%endfor%}
+
+		</ul>
+	</div>       
+</div>
+
+
+</div>
+
+
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+		  <p class="m-0 text-center text-white"> Sirvase Usted  <i class="fa fa-registered"></i><br>
+		  La hora en Canarias: 28/11/2017 02:44 AM
+		  <br><strong>(No soy empresa...¡Aún!)</strong></p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+</body>
+
+</html>
